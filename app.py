@@ -24,36 +24,36 @@ def predict():
     
     ## Departure Time
     date_dep = request.form['Dep_Time']
-    print(date_dep)
+    # print(date_dep)
     Journey_day = int(pd.to_datetime(date_dep, format='%Y-%m-%d').day)
     Journey_month = int(pd.to_datetime(date_dep, format='%Y-%m-%d').month)
-    print(pd.to_datetime(date_dep, format='%Y-%m-%d').weekday)
+    # print(pd.to_datetime(date_dep, format='%Y-%m-%d').weekday)
     Week_day = int(pd.to_datetime(date_dep, format='%Y-%m-%d').dayofweek)
     # Journey_day = int(pd.to_datetime(date_dep, format='%d/%m/%Y').dt.day)
     # Journey_month = int(pd.to_datetime(date_dep, format='%d/%m/%Y').dt.month)
     # Week_day = int(pd.to_datetime(date_dep, format='%d/%m/%Y').dt.weekday)
-    print("Journey Date : ",Journey_day, Journey_month, Week_day)
+    # print("Journey Date : ",Journey_day, Journey_month, Week_day)
 
     # Extracting hour and minutes from the departure time
     Dep_hour = int(pd.to_datetime(date_dep, format='%Y-%m-%dT%H:%M').hour)
     Dep_min = int(pd.to_datetime(date_dep,format='%Y-%m-%dT%H:%M').minute)
-    print("Departure : ",Dep_hour, Dep_min)
+    # print("Departure : ",Dep_hour, Dep_min)
 
     # Extracting hour and minutes from the arrival time
     date_arr = request.form["Arrival_Time"]
     Arrival_hour = int(pd.to_datetime(date_arr, format='%Y-%m-%dT%H:%M').hour)
     Arrival_min = int(pd.to_datetime(date_arr,format='%Y-%m-%dT%H:%M').minute)
-    print("Arrival : ", Arrival_hour, Arrival_min)
+    # print("Arrival : ", Arrival_hour, Arrival_min)
 
 
     # Duration
     dur_hour = abs(Arrival_hour - Dep_hour)
     dur_min = abs(Arrival_min - Dep_min)
-    print("Duration : ", dur_hour, dur_min)
+    # print("Duration : ", dur_hour, dur_min)
 
     # Total Stops
     Total_stops = int(request.form["stops"])
-    print(Total_stops)
+    # print(Total_stops)
 
     # Airline (One Hot Encoding) Will Search how to predict when we have used one hot encoding in training without using if else.
     # AIR ASIA = 0 (not in column)
@@ -214,17 +214,17 @@ def predict():
         Vistara_Premium_economy = 0
         Trujet = 0
 
-    print(Jet_Airways,
-        IndiGo,
-        Air_India,
-        Multiple_carriers,
-        SpiceJet,
-        Vistara,
-        GoAir,
-        Multiple_carriers_Premium_economy,
-        Jet_Airways_Business,
-        Vistara_Premium_economy,
-        Trujet)
+    # print(Jet_Airways,
+    #     IndiGo,
+    #     Air_India,
+    #     Multiple_carriers,
+    #     SpiceJet,
+    #     Vistara,
+    #     GoAir,
+    #     Multiple_carriers_Premium_economy,
+    #     Jet_Airways_Business,
+    #     Vistara_Premium_economy,
+    #     Trujet)
 
     # Source
     # Banglore = 0 (not in column)
@@ -259,10 +259,10 @@ def predict():
         s_Mumbai = 0
         s_Chennai = 0
 
-    print(s_Delhi,
-        s_Kolkata,
-        s_Mumbai,
-        s_Chennai)
+    # print(s_Delhi,
+    #     s_Kolkata,
+    #     s_Mumbai,
+    #     s_Chennai)
 
     # Destination
     # Banglore = 0 (not in column)
@@ -309,13 +309,13 @@ def predict():
         d_Hyderabad = 0
         d_Kolkata = 0
 
-    print(
-        d_Cochin,
-        d_Delhi,
-        d_New_Delhi,
-        d_Hyderabad,
-        d_Kolkata
-    )
+    # print(
+    #     d_Cochin,
+    #     d_Delhi,
+    #     d_New_Delhi,
+    #     d_Hyderabad,
+    #     d_Kolkata
+    # )
 
     prediction = model.predict([[
     Total_stops,
