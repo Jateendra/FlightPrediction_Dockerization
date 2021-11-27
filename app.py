@@ -8,7 +8,7 @@ import datetime as dt
 app = Flask(__name__)
 model = pickle.load(open('flight_rf.pkl', 'rb'))
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def home():
     return render_template('home.html')
 
