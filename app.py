@@ -1,19 +1,16 @@
 from flask import Flask, render_template, request
 import pickle
-from pandas.tseries.offsets import Week
-import sklearn
 import pandas as pd
-import datetime as dt
+from flask_cors import cross_origin
+
 
 app = Flask(__name__)
 model = pickle.load(open('flight_rf.pkl', 'rb'))
 
-@app.route('/', methods=['GET'])
+# home page
+@app.route('/')
 def home():
     return render_template('home.html')
-
-def weekday(x):
-    return pd.to_datetime(x, format='%Y-%m-%d').dayofweek
 
 @app.route('/predict', methods= ["GET","POST"])
 def predict():
@@ -354,7 +351,7 @@ def predict():
 
         return render_template('home.html',prediction_text="Your Flight price is Rs. {}".format(output))
 
-    return render_template("home.html")
+    return render_template('home.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
