@@ -15,7 +15,7 @@ def home():
 def weekday(x):
     return pd.to_datetime(x, format='%Y-%m-%d').dayofweek
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict', methods=['GET','POST'])
 def predict():
 
     # Cleaning of the data  before feeding it to the model
