@@ -9,12 +9,12 @@ itsdangerous
 Jinja2
 joblib
 MarkupSafe
-# numpy
-# pandas
+numpy
+pandas
 python-dateutil
 pytz
-# scikit-learn
-# scipy
+scikit-learn
+scipy
 six
 virtualenv
 Werkzeug
