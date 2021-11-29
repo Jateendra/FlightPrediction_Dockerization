@@ -1,12 +1,81 @@
-FROM continuumio/anaconda3
-COPY . /app
-EXPOSE 5000
-WORKDIR /app
+# FROM python:3-alpine
+# FROM alpine:3.14
+# RUN apk update
+# RUN apk add python3 py3-pip
 
-RUN conda create -n flightpredictor python==3.7 -y
-ENV PATH /opt/conda/envs/filghtpredictor/bin:$PATH
-ENV CONDA_DEFAULT_ENV flightpredictor
-RUN pip3 install -r requirements.txt
+# FROM python:3.8-alpine
+# RUN echo "@testing http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+# RUN apk add --update --no-cache py3-numpy py3-pandas@testing
+# ENV PYTHONPATH=/usr/lib/python3.8/site-packages
 
-CMD ["python", "app.py"]
+# FROM frolvlad/alpine-python3
+
+# RUN apk add --no-cache \
+#         --virtual=.build-dependencies \
+#         g++ gfortran file binutils \
+#         musl-dev python3-dev cython openblas-dev lapack-dev && \
+#     apk add libstdc++ openblas lapack && \
+#     \
+#     ln -s locale.h /usr/include/xlocale.h && \
+#     \
+#     pip install --disable-pip-version-check --no-build-isolation numpy && \
+#     pip install --disable-pip-version-check --no-build-isolation pandas && \
+#     \
+#     # scipy 1.4.x releases are broken on Alpine due to: https://github.com/scipy/scipy/issues/11319
+#     #pip install --disable-pip-version-check --no-build-isolation scipy && \
+#     apk add --no-cache --virtual=.build-dependencies-scipy-patch patch && \
+#     cd /tmp && \
+#     SCIPY_VERSION=1.4.1 && \
+#     wget "https://github.com/scipy/scipy/releases/download/v$SCIPY_VERSION/scipy-$SCIPY_VERSION.tar.xz" && \
+#     tar -xJf "scipy-$SCIPY_VERSION.tar.xz" && \
+#     (cd "scipy-$SCIPY_VERSION" && wget https://patch-diff.githubusercontent.com/raw/scipy/scipy/pull/11320.patch -O - | patch -p1) && \
+#     pip install --disable-pip-version-check --no-build-isolation "/tmp/scipy-$SCIPY_VERSION/" && \
+#     rm -rf /tmp/* && \
+#     apk del .build-dependencies-scipy-patch && \
+#     \
+#     pip install --disable-pip-version-check --no-build-isolation scikit-learn && \
+#     \
+#     rm -r /root/.cache && \
+#     find /usr/lib/python3.*/ -name 'tests' -exec rm -r '{}' + && \
+#     find /usr/lib/python3.*/site-packages/ -name '*.so' -print -exec sh -c 'file "{}" | grep -q "not stripped" && strip -s "{}"' \; && \
+#     \
+#     rm /usr/include/xlocale.h && \
+#     \
+#     apk del .build-dependencies
+
+# # Add pycddlib and cvxopt with GLPK
+# RUN cd /tmp && \
+#     apk add --no-cache \
+#         --virtual=.build-dependencies \
+#         gcc make file binutils \
+#         musl-dev python3-dev cython gmp-dev suitesparse-dev openblas-dev && \
+#     apk add gmp suitesparse && \
+#     \
+#     pip install --disable-pip-version-check --no-build-isolation pycddlib && \
+#     \
+#     wget "ftp://ftp.gnu.org/gnu/glpk/glpk-4.65.tar.gz" && \
+#     tar xzf "glpk-4.65.tar.gz" && \
+#     cd "glpk-4.65" && \
+#     ./configure --disable-static && \
+#     make -j4 && \
+#     make install-strip && \
+#     CVXOPT_BLAS_LIB=openblas CVXOPT_LAPACK_LIB=openblas CVXOPT_BUILD_GLPK=1 pip install --disable-pip-version-check --no-build-isolation --global-option=build_ext --global-option="-I/usr/include/suitesparse" cvxopt && \
+#     \
+#     rm -r /root/.cache && \
+#     find /usr/lib/python3.*/site-packages/ -name '*.so' -print -exec sh -c 'file "{}" | grep -q "not stripped" && strip -s "{}"' \; && \
+#     \
+#     apk del .build-dependencies && \
+#     rm -rf /tmp/*
+
+
+# COPY . /app
+# EXPOSE 5000
+# WORKDIR /app
+
+# RUN pip3 install -r requirements.txt
+
+# CMD ["python", "app.py"]
+
+
+### Not Working. Faced issue in installing packages like Numpy, Scipy, Scikit-Learn in Apline
 
