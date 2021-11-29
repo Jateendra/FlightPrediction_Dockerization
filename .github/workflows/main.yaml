@@ -1,16 +1,13 @@
-name: Deploy
+#name of the project
+name: flight fare predictor
 
-on:
-  push:
-    branches:
-      - master
+on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - uses: sanket-dataent/FlightFarePrediction@v3.0.0 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "flight-fare-prediction0" #Must be unique in Heroku
