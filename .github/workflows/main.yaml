@@ -10,5 +10,5 @@ jobs:
       - uses: actions/checkout@v2
         env:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "flight-fare-prediction0" #App Name
+          heroku_app_name: "flight-fare-prediction0" #Heroku App Name
           heroku_email: "sanketmaheshwari96@gmail.com"
