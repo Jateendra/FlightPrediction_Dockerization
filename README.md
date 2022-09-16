@@ -58,18 +58,11 @@ docker run -p 8000:5000 jateendra/flightprice-conda
 ***
 OR
 ***
-
+```bash
 docker build . -t jateendra/flightprice-conda
 docker run -p 8000:5000 jateendra/flightprice-conda 
+```
 
 # 3 - Detectron2 webapp :
 
-1 . Write the Dockerfile .
-
-2 . In git fire below commands :
-
-```bash
-docker run -i -t continuumio/anaconda3 /bin/bash
-apt-get update
-```
-** If it shows (base) , that means you are using conda .
+* Try using Alpine or ubuntu
